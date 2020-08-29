@@ -3,7 +3,7 @@ const express = require("express");
 //la petición de una forma sencilla.
 const bodyParser = require("body-parser");
 const router = express.Router();
-
+const response = require("./network/response");
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,13 +21,22 @@ router.get("/message", function (req, res) {
   res.header({
     "custom-header": "Nuestro valor personalizado",
   });
-  res.send("Lista de mensajes");
+  // res.send("Lista de mensajes");
+  response.success(req,res, "Lista de mensajes")
 });
 
 router.post("/message", function (req, res) {
   console.log(req.query);
+  if(req.query.error == "ok"){
+    response.error(req,res, "Error simulado",400)
+
+  } else{
+    response.success(req,res, "Creado correctamente",201)
+
+  }
   // res.send("Mensaje:" + req.query.text + "añadido");
-  res.status(201).send({error:"", body:"Creado correctamente"})
+  // res.status(201).send({ error: "", body: "Creado correctamente" });
+
 });
 
 app.listen(3000);
