@@ -38,6 +38,6 @@ router.post("/message", function (req, res) {
   // res.status(201).send({ error: "", body: "Creado correctamente" });
 
 });
-
+app.use("/app", express.static("public"))
 app.listen(3000);
 console.log("La app está escuchando en http://Localhost:3000/");
