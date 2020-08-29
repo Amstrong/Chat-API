@@ -16,16 +16,18 @@ app.use(router);
 // });
 
 router.get("/message", function (req, res) {
-  console.log(req.headers)
+  console.log(req.headers);
+  //con esto le daremos cabeceras al cliente personalizadas.
   res.header({
-    "custom-header":"Nuestro valor personalizado"
-  })
+    "custom-header": "Nuestro valor personalizado",
+  });
   res.send("Lista de mensajes");
 });
 
-router.delete("/message", function (req, res) {
+router.post("/message", function (req, res) {
   console.log(req.query);
-  res.send("Mensaje:" + req.query.text + "añadido");
+  // res.send("Mensaje:" + req.query.text + "añadido");
+  res.status(201).send({error:"", body:"Creado correctamente"})
 });
 
 app.listen(3000);
