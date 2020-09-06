@@ -1,27 +1,26 @@
 const express = require("express");
 const response = require("../../network/response");
+const controller = require("./controller");
 const router = express.Router();
 
 router.get("/", function (req, res) {
-    console.log(req.headers);
-    //con esto le daremos cabeceras al cliente personalizadas.
-    res.header({
-      "custom-header": "Nuestro valor personalizado",
-    });
-    // res.send("Lista de mensajes");
-    response.success(req,res, "Lista de mensajes")
+  console.log(req.headers);
+  //con esto le daremos cabeceras al cliente personalizadas.
+  res.header({
+    "custom-header": "Nuestro valor personalizado",
   });
-  
-  router.post("/", function (req, res) {
-    console.log(req.query);
-    if(req.query.error == "ok"){
-      response.error(req,res, "Error inesperado",500,"simulacion")
-  
-    } else{
-      response.success(req,res, "Creado correctamente",201)
-  
-    }
-  
-  });
+  // res.send("Lista de mensajes");
+  response.success(req, res, "Lista de mensajes");
+});
 
-  module.exports = router;
+router.post("/", function (req, res) {
+  controller.addMessage(req.body.user, req.body.message)
+    .then(() => {
+      response.success(req, res, "Creado correctamente", 201);
+    })
+    .catch((e) => {
+      response.error(req, res, "Información invalida", 400 , "Error en el controlador");
+    });
+});
+
+module.exports = router;
