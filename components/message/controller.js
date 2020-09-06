@@ -5,7 +5,7 @@ function addMessage(user, message) {
       reject("Los datos son incorrectos.");
       return false;
     }
-    
+
     const fullMessage = {
       user: user,
       message: message,
