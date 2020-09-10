@@ -13,8 +13,9 @@ db.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   const myMessage = new Model(message);
   myMessage.save();
 }
-function getMessages() {
-  return list;
+async function getMessages() {
+  const messages = await Model.find();
+  return messages
 }
 
 module.exports = {
