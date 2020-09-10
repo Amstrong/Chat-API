@@ -13,6 +13,7 @@ function addMessage(user, message) {
       message: message,
       date: new Date(),
     };
+    
     store.add(fullMessage);
     console.log(fullMessage);
     resolve(fullMessage);

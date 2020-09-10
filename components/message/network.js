@@ -20,14 +20,7 @@ router.post("/", function (req, res) {
     .then((fullMessage) => {
       response.success(req, res, fullMessage, 201);
     })
-    .catch((e) => {
-      response.error(
-        req,
-        res,
-        "Información invalida",
-        400,
-        "Error en el controlador"
-      );
+    .catch((e) => {response.error(req,res,"Información invalida", 400,"Error en el controlador");
     });
 });
 
