@@ -10,12 +10,10 @@ function addUser(name) {
   return store.add(user);
 }
 
-function getUser() {
-  return new Promise((resolve, reject) => {
-    resolve(store.get());
-  });
+function listUsers() {
+  return store.list();
 }
 module.exports = {
   addUser,
-  getUser,
+  listUsers,
 };

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", function (req, res) {
   controller
-    .getUser()
+    .listUsers()
     .then((data) => {
       response.success(req, res, data, 200);
     })
