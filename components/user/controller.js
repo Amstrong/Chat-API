@@ -9,6 +9,13 @@ function addUser(name) {
   };
   return store.add(user);
 }
+
+function getUser() {
+  return new Promise((resolve, reject) => {
+    resolve(store.get());
+  });
+}
 module.exports = {
   addUser,
+  getUser,
 };
